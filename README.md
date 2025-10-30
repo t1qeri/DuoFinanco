@@ -1,124 +1,59 @@
-# 🧠 Hackathon App — Django REST + React + Vite
+# 🧠 Hackathon App
 
-Простое веб-приложение:  
-**Backend** — Django + DRF + JWT + Swagger  
-**Frontend** — React + Vite + Axios  
-
-Полностью готово к использованию на хакатоне 🚀
-
----
+Структура проекта вебприложения
+(пока что тут только простая форма и таблица задач)
 
 ## ⚙️ Стек технологий
 
-**Backend:**
-- Django 5+
-- Django REST Framework
-- Simple JWT
-- drf-yasg (Swagger)
-- CORS Headers
+### Backend:
+* Python 3.12+
+* Django 5+
+### Frontend:
+- HTML + Django Templates
+- Bootstrap 5
+### Database:
+* SQLite (думаю в сторону перехода на Postgres)
 
-**Frontend:**
-- React 18+
-- Vite
-- Axios
 
----
+## Быстрый старт 
 
-## 🚀 Быстрый старт
 
-### 1️⃣ Клонировать репозиторий
-```bash
+1️⃣ Клонируем репозиторий
+```
 git clone https://github.com/yourname/hackathon-app.git
 cd hackathon-app
 ```
-
-### 2️⃣ Запуск backend (Django)
-```bash
+2️⃣ Запуск локально
+```
 cd backend
 python -m venv venv
-source venv/bin/activate  # или venv\Scripts\activate на Windows
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python manage.py migrate
-python manage.py createsuperuser  # (по желанию)
+```
+3️⃣ Запускаем сервер
+```
 python manage.py runserver
 ```
+Веб-приложение будет доступно: http://127.0.0.1:8000/
 
-📍 Сервер запустится на  
-➡️ http://127.0.0.1:8000/
-
-#### Доступные эндпоинты:
-- `/api/tasks/` — CRUD задачи (JWT авторизация)
-- `/api/token/` — получение токена
-- `/api/token/refresh/` — обновление токена
-- `/swagger/` — Swagger UI
-- `/redoc/` — ReDoc документация
-
----
-
-### 3️⃣ Запуск frontend (React + Vite)
-```bash
-cd ../frontend
-npm install
-npm run dev
+## Опционально
+Создаём таблицы в базе
 ```
-
-📍 Приложение доступно по адресу  
-➡️ http://localhost:5173/
-
----
-
-## 🔑 Авторизация
-1. Создай пользователя в Django:
-   ```bash
-   python manage.py createsuperuser
-   ```
-2. Получи JWT токен:
-   ```bash
-   POST /api/token/
-   {
-     "username": "yourusername",
-     "password": "yourpassword"
-   }
-   ```
-3. Сохрани токен в localStorage (автоматически делает фронт при логине).
-
----
-
-## 📂 Структура проекта
+python manage.py makemigrations
+python manage.py migrate
 ```
-hackathon-app/
-│
-├── backend/
-│   ├── manage.py
-│   ├── backend/
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   └── api/
-│       ├── models.py
-│       ├── views.py
-│       ├── serializers.py
-│       └── urls.py
-│
-└── frontend/
-    ├── vite.config.js
-    ├── src/
-    │   ├── App.jsx
-    │   ├── api.js
-    │   ├── components/
-    │   │   ├── LoginForm.jsx
-    │   │   └── TaskList.jsx
-    └── package.json
+Создаём суперпользователя
 ```
-
----
-
-## 🐳 (опционально) Запуск через Docker
-```bash
-docker compose up --build
+python manage.py createsuperuser
 ```
-*(можно добавить `backend` и `frontend` сервисы в docker-compose.yml)*
-
----
-
-## 📜 Лицензия
-MIT © 2025 — [yourname](https://github.com/yourname)
+Запуск через Docker
+Для запуска в докере предусмотрен docker-compose.yaml
+Сборка и запуск:
+```
+docker compose build
+docker compose up -d
+```
+Остановить и удалить контейнеры:
+```
+docker compose down
+```
