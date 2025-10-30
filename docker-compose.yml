@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  backend:
+    build: .
+    container_name: hackathon_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+    environment:
+      - DJANGO_SETTINGS_MODULE=backend.settings
